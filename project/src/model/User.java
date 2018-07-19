@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class user {
+public class User {
 	private int id;
 	private String loginId;
 	private String name;
@@ -13,14 +13,14 @@ public class user {
 
 
 	// ログインセッションを保存するためのコンストラクタ
-	public user(String loginId, String password) {
+	public User(String loginId, String password) {
 		this.loginId = loginId;
 		this.password = password;
 
 	}
 
 	// 全てのデータをセットするコンストラクタ
-	public user(int id, String loginId, String name, Date birthDate, String password, String createDate, String updateDate) {
+	public User(int id, String loginId, String name, Date birthDate, String password, String createDate, String updateDate) {
 		this.id = id;
 		this.loginId = loginId;
 		this.name = name;

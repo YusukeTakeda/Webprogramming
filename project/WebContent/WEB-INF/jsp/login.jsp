@@ -12,15 +12,15 @@
 <body>
 <h1 class="text-center">ログイン画面</h1>
 
-<form>
+<form　action="LoginServelet" method="post">
   <div class="container">
   <div class="form-group">
-    <label for="email">ログインID</label>
-    <input type="email" class="form-control" id="email" placeholder="ログインID">
+    <label for="text">ログインID</label>
+    <input type="text" name="loginId" class="form-control" id="loginId" placeholder="ログインID">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">パスワード</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input type="password" name= "password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
 
   <button type="submit" class="btn btn-primary">ログイン</button>

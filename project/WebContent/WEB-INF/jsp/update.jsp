@@ -19,26 +19,30 @@
 
     <h1 class="text-center">ユーザ情報更新</h1>
     <div class="container">
-    <form>
+    <form method="post" action="UpdateServlet" >
         <div class="form-group">
+        	<div class="form-group">
+            <label>ID</label>
+            <input type="hidden" name="id" class="form-control" value="${user.id}">
+        </div>
             <label>ログインID</label>
-            <input type="text" name="loginId" class="form-control">
+            <input type="text" name="loginId" class="form-control" value="${user.loginId}">
         </div>
         <div class="form-group">
             <label>パスワード</label>
-            <input type="password" name="password" class="form-control">
+            <input type="password" name="password" class="form-control" value="${user.password}">
         </div>
         <div class="form-group">
             <label>パスワード(確認)</label>
-            <input type="password" name="passwordConf" class="form-control">
+            <input type="password" name="passwordConf" class="form-control" value="${user.password}">
         </div>
         <div class="form-group">
             <label>ユーザ名</label>
-            <input type="text" name="userName" class="form-control">
+            <input type="text" name="userName" class="form-control" value="${user.name}">
         </div>
         <div class="form-group">
             <label>生年月日</label>
-            <input type="date" class="form-control" id="birthDate" value="1992-07-06">
+            <input type="date" name= "birthDate" class="form-control" id="birthDate" value="${user.birthDate}">
           </div>
         <div class="checkbox">
             <label>
@@ -46,8 +50,9 @@
             </label>
         </div>
           <button type="submit" class="btn btn-outline-danger">更新</button><br>
+        </form>
 
-    <a href="userList.html" class="float-left">戻る</a>
+    <a href="UserListServlet" class="float-left">戻る</a>
   </div>
 <!-- for="birthDate" class="col-sm-2 col-form-label" -->
 <!-- <div class="col-sm-10"> -->

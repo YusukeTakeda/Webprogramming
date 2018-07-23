@@ -15,9 +15,9 @@
         <p>ログインID:</p>
         <p>を本当に削除してよろしいですか?</p>
         <button type="button" class="btn btn-outline-primary" href="userList.html">いいえ</button>
-        <button type="button" class="btn btn-outline-light" href="userList.html">はい</button>
+        <button action ="DeleteServlet" method="post" type="button" class="btn btn-outline-light">はい</button>
+         <br><a href="UserListServlet" class="float-left">戻る</a>
       </div>
-
     </div>
   </body>
 </html>

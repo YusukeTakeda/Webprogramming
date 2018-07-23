@@ -16,14 +16,14 @@ import model.User;
 /**
  * Servlet implementation class LoginServelet
  */
-@WebServlet("/LoginServelet")
-public class LoginServelet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServelet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,7 +50,7 @@ public class LoginServelet extends HttpServlet {
 		//　リクエストパラメータの入力項目を引数に渡して、Daoのメソッドを実行
 		UserDao userDao = new UserDao();
 		User user =userDao.FindByLoginInfo(loginId,password);
-		//テーブルに街灯のデータが見つからなかった場合
+		//テーブルに該当のデータが見つからなかった場合
 		if(user == null) {
 			//リクエストスコープにエラーメッセージをセット
 			request.setAttribute("errMsg", "ログインに失敗しました。");
@@ -68,7 +68,7 @@ public class LoginServelet extends HttpServlet {
 		session.setAttribute("userInfo", user);
 
 		//ユーザ一覧のサーブレットにリダイレクト
-		response.sendRedirect("UserListServelet");
+		response.sendRedirect("UserListServlet");
 
 	}
 

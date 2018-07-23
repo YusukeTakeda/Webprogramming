@@ -12,22 +12,22 @@
 </head>
 <header>
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal">ユーザ名さん</h5>
-        <a class="btn btn-outline-primary" href="login.html">ログアウト</a>
-        <a class="btn btn-outline-primary" href="SignUp.html">新規登録</a>
+        <h5 class="my-0 mr-md-auto font-weight-normal">ユーザ名さん </h5>
+        <a class="btn btn-outline-primary" href="LogoutServlet">ログアウト</a>
+        <a class="btn btn-outline-primary" href="SignUpServlet">新規登録</a>
 </header>
   <body>
     <h1 class="text-center">ユーザ一覧</h1>
 
-    <form>
+    <form method="post" action="#" >
       <div class="container">
       <div class="form-group">
         <label for="email">ログインID</label>
-        <input type="email" class="form-control" id="email" placeholder="ログインID">
+        <input type="text" name="login-id" class="form-control" id="login-id" placeholder="ログインID">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">パスワード</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <label for="exampleInputPassword1">ユーザ名</label>
+        <input type="text"  name="user-name" class="form-control" id="user-name" placeholder="ユーザ名">
       </div>
       <div class="form-group row">
 
@@ -63,30 +63,18 @@
         </tr>
       </thead>
       <tbody>
+      <c:forEach var="user" items="${userList}">
         <tr>
-          <td>id0001</td><td>田中太郎</td><td>1989年04月26日</td>
+          <td>${user.loginId}</td>
+          <td>${user.name}</td>
+          <td>${user.birthDate}</td>
           <td>
-            <a class="btn btn-primary" href="userRef.html">詳細</a>
-            <a class="btn btn-success" href="update.html">更新</a>
-            <a class="btn btn-danger" href ="delete.html">削除</a>
+            <a class="btn btn-primary" href="UserRefServlet?id=${user.id}">詳細</a>
+            <a class="btn btn-success" href="UpdateServlet?id=${user.id}">更新</a>
+            <a class="btn btn-danger" href ="DeleteServlet?id=${user.id}">削除</a>
           </td>
         </tr>
-        <tr>
-          <td>id0002</td><td>佐藤二朗</td><td>2001年11月12日</td>
-          <td>
-            <a class="btn btn-primary" href="userRef.html">詳細</a>
-            <a class="btn btn-success" href="update.html">更新</a>
-            <a class="btn btn-danger" href ="delete.html">削除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>id0003</td><td>佐藤真司</td><td>2000年01月01日</td>
-          <td>
-            <a class="btn btn-primary" href="userRef.html">詳細</a>
-            <a class="btn btn-success" href="update.html">更新</a>
-            <a class="btn btn-danger" href ="delete.html">削除</a>
-          </td>
-        </tr>
+       </c:forEach>
       </tbody>
     </table>
   </div><!--/table-responsive-->

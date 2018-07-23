@@ -19,14 +19,13 @@
     <h1 class="text-center">ユーザー情報詳細参照</h1>
     <div class="container">
     <ul>
-      <li>ログインID</li>
-      <li>ユーザ名</li>
-      <li>生年月日</li>
-      <li>登録日時</li>
-      <li>更新日時</li>
+      <li>ログインID:${user.loginId}</li>
+      <li>ユーザ名:${user.name}</li>
+      <li>生年月日:${user.birthDate}</li>
+      <li>登録日時:${user.createDate}</li>
+      <li>更新日時:${user.updateDate}</li>
     </ul>
-
-    <a href="userList.html" class="float-left">戻る</a>
+    <a href="UserListServlet" class="float-left">戻る</a>
   </div>
 
 

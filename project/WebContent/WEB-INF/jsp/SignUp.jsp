@@ -11,27 +11,27 @@
   </head>
   <body>
     <h1 class="text-center">ユーザ新規登録</h1>
-    <form>
+    <form action ="SignUpServlet" method="post">
       <div class="container">
       <div class="form-group">
         <label for="formGroupExampleInput">ログインID</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="ログインID">
+        <input type="text" name="loginId" class="form-control" id="formGroupExampleInput" placeholder="ログインID">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">パスワード</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="パスワード">
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="パスワード">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">パスワード(確認)</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="パスワード(確認)">
+        <input type="password" name="passwordCnf" class="form-control" id="exampleInputPassword1" placeholder="パスワード(確認)">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">ユーザ名</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="ユーザ名">
+        <input type="text" name="userName" class="form-control" id="formGroupExampleInput2" placeholder="ユーザ名">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">生年月日</label>
-        <input type="date" class="form-control" id="formGroupExampleInput2" placeholder="生年月日">
+        <input type="date" name="birthDate" class="form-control" id="formGroupExampleInput2" placeholder="生年月日">
       </div>
      <div class="form-group form-check">
        <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -39,6 +39,6 @@
      </div>
      <button type="submit" class="btn btn-primary">登録</button>
    </form><br>
-    <a href="userList.html" class="float-left">戻る</a>
+    <a href="UserListServlet" class="float-left">戻る</a>
   </body>
 </html>

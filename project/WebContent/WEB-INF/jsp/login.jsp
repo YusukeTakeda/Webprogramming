@@ -12,7 +12,13 @@
 <body>
 <h1 class="text-center">ログイン画面</h1>
 
-<form　action="LoginServelet" method="post">
+	<c:if test="${errMsg != null}" >
+	    <div class="alert alert-danger" role="alert">
+		  ${errMsg}
+		</div>
+	</c:if>
+
+<form action="LoginServlet" method="post">
   <div class="container">
   <div class="form-group">
     <label for="text">ログインID</label>

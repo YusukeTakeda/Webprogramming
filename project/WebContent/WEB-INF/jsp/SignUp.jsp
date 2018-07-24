@@ -11,6 +11,13 @@
   </head>
   <body>
     <h1 class="text-center">ユーザ新規登録</h1>
+
+     <c:if test="${errMsg != null}" >
+	    <div class="alert alert-danger" role="alert">
+		  ${errMsg}
+		</div>
+	</c:if>
+
     <form action ="SignUpServlet" method="post">
       <div class="container">
       <div class="form-group">

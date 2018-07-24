@@ -12,12 +12,14 @@
   <body>
     <h1 class="text-center">ユーザ削除確認</h1>
       <div class="container">
-        <p>ログインID:</p>
+        <p>ログインID:${user.loginId}</p>
         <p>を本当に削除してよろしいですか?</p>
-        <button type="button" class="btn btn-outline-primary" href="userList.html">いいえ</button>
-        <button action ="DeleteServlet" method="post" type="button" class="btn btn-outline-light">はい</button>
+         <form action="DeleteServlet" method="post">
+         <input type="hidden" name="id" class="form-control" value="${user.id}">
+        <a class="btn btn-outline-primary" href="UserListServlet">いいえ</a>
+        <button type="submit" class="btn btn-outline-light">はい</button>
          <br><a href="UserListServlet" class="float-left">戻る</a>
+         </form>
       </div>
-    </div>
   </body>
 </html>

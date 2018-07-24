@@ -69,8 +69,8 @@ public class UserDao {
 			conn = DBManager.getConnection();
 
 			// SELECT文を準備
-			// TODO: 未実装：管理者以外を取得するようSQLを変更する
-			String sql = "SELECT * FROM user";
+			// 管理者以外を取得するようSQLを変更する
+			String sql = "SELECT * FROM user where login_id != 'admin'";
 
 			// SELECT文を実行し結果表を取得
 			Statement stmt = conn.createStatement();
@@ -108,6 +108,72 @@ public class UserDao {
 		}
 		return userList;
 	}
+
+	public List<User> Find(String loginIdP, String userName, String DateStart, String DateEnd ){
+		Connection conn = null;
+		List<User> userList = new ArrayList<User>();
+
+		try {
+			// データベースへ接続
+			conn = DBManager.getConnection();
+
+			// SELECT文を準備
+			// 管理者以外を取得するようSQLを変更する
+			String sql = "SELECT * FROM user where login_id != 'admin'";
+
+			if(!loginIdP.equals("")) {
+				sql += " and login_id = '" + loginIdP + "'";
+			}
+			if(!userName.equals("")) {
+				sql += " and login_id = '" + userName + "'";
+			}
+			if(!DateStart.equals("")) {
+				sql += " and login_id = '" + DateStart + "'";
+			}
+			if(!DateEnd.equals("")) {
+				sql += " and login_id = '" + DateEnd + "'";
+			}
+
+
+
+
+			// SELECT文を実行し結果表を取得
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+
+			// 結果表に格納されたレコードの内容を
+			// Userインスタンスに設定し、ArrayListインスタンスに追加
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String loginId = rs.getString("login_id");
+				String name = rs.getString("name");
+				Date birthDate = rs.getDate("birth_date");
+				String password = rs.getString("password");
+				String createDate = rs.getString("create_date");
+				String updateDate = rs.getString("update_date");
+				User user = new User(id,loginId,name,birthDate,password,createDate,updateDate);
+
+				userList.add(user);
+			}
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			//データベース切断
+			if(conn != null) {
+				try {
+					conn.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+					return null;
+				}
+			}
+		}
+		return userList;
+	}
+
 		public void Add(String loginId, String password, String userName, String birthDate) {
 			Connection conn = null;
 			try {
@@ -190,7 +256,9 @@ public class UserDao {
 			String sql = "delete from user where id= ?";
 			//DELETE文を実行
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
 			pStmt.setString(1,id);
+
 			pStmt.executeUpdate();
 			pStmt.close();
 
@@ -257,5 +325,62 @@ public class UserDao {
 		}
 
 	}
+	//ユーザーリスト画面の検索
+		public List<User> Search(String loginId, String userName, String dateStart, String dateEnd){
+			Connection conn = null;
+			List<User> userList = new ArrayList<User>();
+
+			try {
+				// データベースへ接続
+				conn = DBManager.getConnection();
+
+				// SELECT文を準備
+				// 管理者以外を取得するようSQLを変更する
+				String sql = "SELECT * FROM user where login_id != 'admin'";
+
+				// SELECT文を実行し結果表を取得
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, loginId);
+				pStmt.setString(2,userName);
+				pStmt.setString(3,dateStart);
+				pStmt.setString(4,dateEnd);
+				ResultSet rs =pStmt.executeQuery(sql);
+
+				// 結果表に格納されたレコードの内容を
+				// Userインスタンスに設定し、ArrayListインスタンスに追加
+
+				if(loginId.equals("login_id")){
+					while(rs.next()) {
+						int id = rs.getInt("id");
+						String loginId1 = rs.getString("login_id");
+						String name = rs.getString("name");
+						Date birthDate = rs.getDate("birth_date");
+						String password = rs.getString("password");
+						String createDate = rs.getString("create_date");
+						String updateDate = rs.getString("update_date");
+						User user = new User(id,loginId1,name,birthDate,password,createDate,updateDate);
+
+						userList.add(user);
+					}
+				}
+
+			}catch(SQLException e){
+				e.printStackTrace();
+				return null;
+
+			} finally {
+				//データベース切断
+				if(conn != null) {
+					try {
+						conn.close();
+					}catch(SQLException e) {
+						e.printStackTrace();
+						return null;
+					}
+				}
+			}
+			return userList;
+		}
+
 
 }

@@ -13,7 +13,7 @@
   <body>
     <header>
       <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow">
-            <h5 class="my-0 mr-md-auto font-weight-normal">ユーザ名さん</h5>
+            <h5 class="my-0 mr-md-auto font-weight-normal">${user.name}さん</h5>
             <a class="btn btn-outline-primary" href="login.html">ログアウト</a>
     </header>
     <h1 class="text-center">ユーザー情報詳細参照</h1>

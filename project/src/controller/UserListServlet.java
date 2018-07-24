@@ -33,16 +33,17 @@ public class UserListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO 未実装：ログインセッションがない場合、ログイン画面にリダイレクトされる
-		//ユーザ一覧情報を取得
+
+		// ユーザ一覧情報を取得
 		UserDao userDao = new UserDao();
 		List<User> userList = userDao.findAll();
 
-		//リクエストスコープにユーザ一覧情報をセット
+		// リクエストスコープにユーザ一覧情報をセット
 		request.setAttribute("userList", userList);
 
-		//ユーザ一覧のjspにフォワード
+		// ユーザ一覧のjspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userList.jsp");
-		dispatcher.forward(request,response);
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -50,6 +51,23 @@ public class UserListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO 未実装:検索処理全般
+		// リクエストパラメータの文字コードを指定
+		request.setCharacterEncoding("UTF-8");
+
+		// リクエストパラメータの取得
+		String loginId = request.getParameter("login-id");
+		String userName = request.getParameter("user-name");
+		String dateStart = request.getParameter("date-start");
+		String dateEnd = request.getParameter("date-end");
+
+		UserDao userDao = new UserDao();
+//		userDao.List<User> Search();
+
+
+
+
+
+
 	}
 
 }

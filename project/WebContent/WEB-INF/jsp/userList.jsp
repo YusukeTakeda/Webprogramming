@@ -12,14 +12,16 @@
 </head>
 <header>
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal">ユーザ名さん </h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal">${userInfo.name}さん</h5>
         <a class="btn btn-outline-primary" href="LogoutServlet">ログアウト</a>
         <a class="btn btn-outline-primary" href="SignUpServlet">新規登録</a>
+ </div>
 </header>
   <body>
     <h1 class="text-center">ユーザ一覧</h1>
 
-    <form method="post" action="#" >
+    <form method="post" action="UserListServlet" >
+    <input type="hidden" name="id" class="form-control" value="${user.id}">
       <div class="container">
       <div class="form-group">
         <label for="email">ログインID</label>
@@ -46,9 +48,10 @@
           </div>
         </div>
       </div>
-      <div class="text-right">
-
-      <button type="submit" class="btn btn-primary">検索</button>
+	      <div class="text-right">
+	      <button type="submit" class="btn btn-primary">検索</button>
+      </div>
+      </div>
     </form>
     <br>
 
@@ -69,9 +72,16 @@
           <td>${user.name}</td>
           <td>${user.birthDate}</td>
           <td>
+
+          <%-- 	<c:if test="${userInfo.loginId==user.loginId}"> --%>
             <a class="btn btn-primary" href="UserRefServlet?id=${user.id}">詳細</a>
+           <%--  </c:if> --%>
+            <c:if test="${userInfo.loginId==user.loginId || userInfo.loginId=='admin'}">
             <a class="btn btn-success" href="UpdateServlet?id=${user.id}">更新</a>
+            </c:if>
+            <c:if test="${userInfo.loginId=='admin'}">
             <a class="btn btn-danger" href ="DeleteServlet?id=${user.id}">削除</a>
+            </c:if>
           </td>
         </tr>
        </c:forEach>

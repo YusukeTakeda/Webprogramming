@@ -13,9 +13,9 @@ public class User {
 
 
 	// ログインセッションを保存するためのコンストラクタ
-	public User(String loginId, String password) {
+	public User(String loginId, String name) {
 		this.loginId = loginId;
-		this.password = password;
+		this.name = name;
 
 	}
 

@@ -18,8 +18,8 @@
          <input type="hidden" name="id" class="form-control" value="${user.id}">
         <a class="btn btn-outline-primary" href="UserListServlet">いいえ</a>
         <button type="submit" class="btn btn-outline-light">はい</button>
+		</form>
          <br><a href="UserListServlet" class="float-left">戻る</a>
-         </form>
       </div>
   </body>
 </html>

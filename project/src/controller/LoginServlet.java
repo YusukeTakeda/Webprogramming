@@ -37,6 +37,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		RequestDispatcher disp = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		disp.forward(request, response);
 	}
@@ -76,7 +77,7 @@ public class LoginServlet extends HttpServlet {
 		//テーブルに該当のデータが見つからなかった場合
 		if(user == null) {
 			//リクエストスコープにエラーメッセージをセット
-			request.setAttribute("errMsg", "ログインに失敗しました。");
+			request.setAttribute("errMsg", "ログインIDまたはパスワードが異なります!!");
 
 			//ログインjspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");

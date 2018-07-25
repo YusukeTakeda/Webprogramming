@@ -125,17 +125,16 @@ public class UserDao {
 				sql += " and login_id = '" + loginIdP + "'";
 			}
 			if(!userName.equals("")) {
-				sql += " and login_id = '" + userName + "'";
+				sql += " and name LIKE '%" + userName + "%'";
 			}
 			if(!DateStart.equals("")) {
-				sql += " and login_id = '" + DateStart + "'";
+				sql += " and birth_date >= '" + DateStart + "'";
 			}
 			if(!DateEnd.equals("")) {
-				sql += " and login_id = '" + DateEnd + "'";
+				sql += " and birth_date <= '" + DateEnd + "'";
 			}
 
-
-
+			System.out.println(sql);
 
 			// SELECT文を実行し結果表を取得
 			Statement stmt = conn.createStatement();
@@ -174,7 +173,7 @@ public class UserDao {
 		return userList;
 	}
 
-		public void Add(String loginId, String password, String userName, String birthDate) {
+		public int Add(String loginId, String password, String userName, String birthDate) {
 			Connection conn = null;
 			try {
 				//データベースへ接続
@@ -189,12 +188,16 @@ public class UserDao {
 				pStmt.setString(3,userName);
 				pStmt.setString(4,birthDate);
 
-				pStmt.executeUpdate();
+				int result = pStmt.executeUpdate();
+
 				pStmt.close();
+
+				return result;
 
 
 			}catch(SQLException e) {
 				e.printStackTrace();
+				return 0;
 			}finally {
 
 				//データベース切断
@@ -203,6 +206,7 @@ public class UserDao {
 						conn.close();
 					}catch(SQLException e) {
 						e.printStackTrace();
+						return 0;
 					}
 
 				}

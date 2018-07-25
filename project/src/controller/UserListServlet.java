@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
 import model.User;
@@ -32,7 +33,13 @@ public class UserListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO 未実装：ログインセッションがない場合、ログイン画面にリダイレクトされる
+		//ログインセッションがない場合、ログイン画面にリダイレクトさせる
+		HttpSession session = request.getSession();
+		if(session.getAttribute("userInfo") == null) {
+			//ユーザ一覧のサーブレットにリダイレクト
+			response.sendRedirect("LoginServlet");
+			return;
+		}
 
 		// ユーザ一覧情報を取得
 		UserDao userDao = new UserDao();
@@ -61,13 +68,13 @@ public class UserListServlet extends HttpServlet {
 		String dateEnd = request.getParameter("date-end");
 
 		UserDao userDao = new UserDao();
-//		userDao.List<User> Search();
+		List<User> userList = userDao.Find(loginId, userName, dateStart, dateEnd);
 
+		request.setAttribute("userList", userList);
 
-
-
-
-
+		// ユーザ一覧のjspにフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userList.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
